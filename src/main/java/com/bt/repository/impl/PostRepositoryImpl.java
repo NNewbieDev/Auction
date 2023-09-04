@@ -2,32 +2,35 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.bt.controllers;
+package com.bt.repository.impl;
 
+import com.bt.pojo.Post;
+import com.bt.repository.PostRepository;
+import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jca.support.LocalConnectionFactoryBean;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  *
  * @author admin
  */
-@Controller
-public class HomeController {
+@Repository
+@Transactional
+public class PostRepositoryImpl implements PostRepository{
     @Autowired
     private LocalSessionFactoryBean factory;
-            
-    @RequestMapping("/")
-    @Transactional
-    public String index(Model model){
+
+    @Override
+    public List<Post> getPosts() {
         Session s = factory.getObject().getCurrentSession();
-        Query q = s.createQuery("FROM User");
-        model.addAttribute("shop", q.getResultList());
-        return "index";
+        Query q = s.createQuery("FROM Post");
+        return q.getResultList();
     }
+    
+    
 }

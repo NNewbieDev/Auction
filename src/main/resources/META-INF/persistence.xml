@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="com.bt_DauGiaApp_war_1.0-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>com.bt.pojo.Shop</class>
+    <class>com.bt.pojo.Posts</class>
+    <class>com.bt.pojo.Reaction</class>
+    <class>com.bt.pojo.Role</class>
+    <class>com.bt.pojo.Report</class>
+    <class>com.bt.pojo.User</class>
+    <class>com.bt.pojo.Products</class>
+    <class>com.bt.pojo.Result</class>
+    <class>com.bt.pojo.Notification</class>
+    <class>com.bt.pojo.Tag</class>
+    <class>com.bt.pojo.Categories</class>
+    <class>com.bt.pojo.PostTag</class>
+    <class>com.bt.pojo.Comment</class>
+    <class>com.bt.pojo.Category</class>
+    <class>com.bt.pojo.Like1</class>
+    <class>com.bt.pojo.Auction</class>
+    <class>com.bt.pojo.Bid</class>
+    <class>com.bt.pojo.Post</class>
+    <class>com.bt.pojo.Product</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/auction?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="1234"/>
+    </properties>
+  </persistence-unit>
+</persistence>
