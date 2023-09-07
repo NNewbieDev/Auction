@@ -4,16 +4,10 @@
  */
 package com.bt.controllers;
 
-import com.bt.pojo.Post;
-import com.bt.pojo.User;
-import com.bt.service.PostService;
-import java.util.Date;
-import java.util.List;
+import com.bt.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,26 +16,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
- * @author admin
+ * @author vanli
  */
 @RestController
 @RequestMapping("/api")
-public class ApiPostController {
-
+public class ApiCommentController {
     @Autowired
-    private PostService postServe;
-
-    @GetMapping("/posts/")
+    private CommentService commentService;
+    
+    @GetMapping("/posts/cmt/{postId}")
     @CrossOrigin
-    public ResponseEntity<List<Post>> list() {
-        return new ResponseEntity<>(this.postServe.getPost(), HttpStatus.OK);
-    }
-
-    @GetMapping("/posts/{date}")
-    @CrossOrigin
-    public ResponseEntity<Integer> countPost(@PathVariable("date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) {
-        int postCount = this.postServe.countPost(date);
-        return new ResponseEntity<>(postCount, HttpStatus.OK);
+    public ResponseEntity<Integer> countCmt(@PathVariable(value = "postId") Integer postId) {
+        int cmtCount = this.commentService.countCmt(postId);
+        return new ResponseEntity<>(cmtCount, HttpStatus.OK);
     }
     
 }

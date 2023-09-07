@@ -4,9 +4,11 @@
  */
 package com.bt.controllers;
 
+import com.bt.service.PostService;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,15 +21,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class HomeController {
+
     @Autowired
     private LocalSessionFactoryBean factory;
-            
+
     @RequestMapping("/")
     @Transactional
-    public String index(Model model){
-        Session s = factory.getObject().getCurrentSession();
-        Query q = s.createQuery("FROM User");
+    public String index(Model model) {
+        Session s = factory.getObject().getCurrentSession();    
+        Query q = s.createQuery("FROM Post");
         model.addAttribute("shop", q.getResultList());
         return "index";
+  
     }
 }

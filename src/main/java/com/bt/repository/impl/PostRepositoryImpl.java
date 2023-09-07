@@ -6,11 +6,15 @@ package com.bt.repository.impl;
 
 import com.bt.pojo.Post;
 import com.bt.repository.PostRepository;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jca.support.LocalConnectionFactoryBean;
+import static org.springframework.jdbc.core.JdbcOperationsExtensionsKt.query;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +25,8 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository
 @Transactional
-public class PostRepositoryImpl implements PostRepository{
+public class PostRepositoryImpl implements PostRepository {
+
     @Autowired
     private LocalSessionFactoryBean factory;
 
@@ -31,6 +36,27 @@ public class PostRepositoryImpl implements PostRepository{
         Query q = s.createQuery("FROM Post");
         return q.getResultList();
     }
-    
-    
+
+    @Override
+    public int countPost(Date date) {
+        Session session = this.factory.getObject().getCurrentSession();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+
+        // Lấy ngày, tháng và năm từ tham số date
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH) + 1; // Lưu ý: Tháng trong Calendar bắt đầu từ 0, nên cần cộng thêm 1.
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        Query<Long> query = session.createQuery(
+                "SELECT COUNT(*) FROM Post WHERE YEAR(createDate) = :year AND MONTH(createDate) = :month AND DAY(createDate) = :day", Long.class);
+
+        query.setParameter("year", year);
+        query.setParameter("month", month);
+        query.setParameter("day", day);
+
+        Long count = query.getSingleResult();
+        return count.intValue();
+    }
+
 }

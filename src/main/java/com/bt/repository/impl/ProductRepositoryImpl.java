@@ -24,7 +24,8 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository
 @Transactional
-public class ProductRepositoryImpl implements ProductRepository{
+public class ProductRepositoryImpl implements ProductRepository {
+
     @Autowired
     private LocalSessionFactoryBean factory;
 
@@ -39,5 +40,5 @@ public class ProductRepositoryImpl implements ProductRepository{
         Query query = s.createQuery(q);
         return query.getResultList();
     }
-    
+
 }
