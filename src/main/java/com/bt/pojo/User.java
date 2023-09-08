@@ -65,32 +65,25 @@ public class User implements Serializable {
     @Column(name = "avatar_url")
     private String avatarUrl;
     @OneToMany(mappedBy = "userId")
-        @JsonIgnore
-
+    @JsonIgnore
     private Set<Like1> like1Set;
     @OneToMany(mappedBy = "userId")
-        @JsonIgnore
-
+    @JsonIgnore
     private Set<Auction> auctionSet;
     @OneToMany(mappedBy = "senderId")
-        @JsonIgnore
-
+    @JsonIgnore
     private Set<Notification> notificationSet;
     @OneToMany(mappedBy = "userId")
-        @JsonIgnore
-
+    @JsonIgnore
     private Set<Post> postSet;
     @OneToMany(mappedBy = "userId")
-        @JsonIgnore
-
+    @JsonIgnore
     private Set<Report> reportSet;
     @OneToMany(mappedBy = "userId")
-        @JsonIgnore
-
+    @JsonIgnore
     private Set<Comment> commentSet;
     @OneToMany(mappedBy = "userId")
-        @JsonIgnore
-
+    @JsonIgnore
     private Set<Bid> bidSet;
     @JoinColumn(name = "role_id", referencedColumnName = "id")
     @ManyToOne

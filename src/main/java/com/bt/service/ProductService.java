@@ -6,11 +6,12 @@ package com.bt.service;
 
 import com.bt.pojo.Product;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
  * @author admin
  */
 public interface ProductService {
-    List<Product> getProducts();
+    List<Product> getProducts(Map<String, String> param);
 }

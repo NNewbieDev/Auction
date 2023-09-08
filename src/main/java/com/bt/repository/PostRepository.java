@@ -13,4 +13,7 @@ import java.util.List;
  */
 public interface PostRepository {
     List<Post> getPosts();
+    boolean addOrPost(Post p);
+    Post getPostById(int id);
+    boolean deletePost(int id);
 }

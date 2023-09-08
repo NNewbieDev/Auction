@@ -6,11 +6,11 @@ package com.bt.repository.impl;
 
 import com.bt.pojo.User;
 import com.bt.repository.UserRepository;
-import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,19 +20,35 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository
 @Transactional
-public class UserRepositoryImpl implements UserRepository{
-    
+public class UserRepositoryImpl implements UserRepository {
+
     @Autowired
     private LocalSessionFactoryBean factory;
+    @Autowired
+    private BCryptPasswordEncoder passEncoder;
 
     @Override
-    public List<User> getUsers() {
-        Session s = factory.getObject().getCurrentSession();
-        Query q = s.createQuery("FROM User");
-        
-        return q.getResultList();
+    public User getUserByUsername(String username) {
+        Session s = this.factory.getObject().getCurrentSession();
+        Query q = s.createQuery("FROM User WHERE username=:un");
+        q.setParameter("un", username);
+
+        return (User) q.getSingleResult();
     }
-         
-     
-    
+
+    @Override
+    public boolean authUser(String username, String password) {
+        User  u = this.getUserByUsername(username);
+        
+        return this.passEncoder.matches(password, u.getPassword());
+    }
+
+    @Override
+    public User addUser(User u) {
+        Session s = this.factory.getObject().getCurrentSession();
+        s.save(u);
+        
+        return u;
+    }
+
 }

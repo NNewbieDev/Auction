@@ -44,8 +44,7 @@ public class Category implements Serializable {
     @Column(name = "name")
     private String name;
     @OneToMany(mappedBy = "cateId")
-        @JsonIgnore
-
+    @JsonIgnore
     private Set<Product> productSet;
 
     public Category() {

@@ -4,15 +4,10 @@
  */
 package com.bt.repository;
 
-import com.bt.pojo.Product;
-import java.util.List;
-import java.util.Map;
-
 /**
  *
  * @author admin
  */
-public interface ProductRepository {
-    List<Product> getProducts(Map<String, String> params);
-
+public interface NotificationRepository {
+    
 }

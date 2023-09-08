@@ -44,8 +44,7 @@ public class Tag implements Serializable {
     @Column(name = "name")
     private String name;
     @OneToMany(mappedBy = "tagId")
-        @JsonIgnore
-
+    @JsonIgnore
     private Set<PostTag> postTagSet;
 
     public Tag() {

@@ -7,12 +7,14 @@ package com.bt.controllers;
 import com.bt.pojo.Product;
 import com.bt.service.ProductService;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -27,7 +29,7 @@ public class ApiProductController {
     
     @GetMapping("/products/")
     @CrossOrigin
-    public ResponseEntity<List<Product>> list(){
-        return new ResponseEntity<>(this.prodServe.getProducts(), HttpStatus.OK);
+    public ResponseEntity<List<Product>> list(@RequestParam Map<String, String> param){
+        return new ResponseEntity<>(this.prodServe.getProducts(param), HttpStatus.OK);
     }
 }

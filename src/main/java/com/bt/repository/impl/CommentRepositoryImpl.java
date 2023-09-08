@@ -4,21 +4,16 @@
  */
 package com.bt.repository.impl;
 
-import com.bt.pojo.Post;
+import com.bt.pojo.Comment;
 import com.bt.pojo.Product;
-import com.bt.pojo.User;
-import com.bt.repository.ProductRepository;
-import java.util.ArrayList;
+import com.bt.repository.CommentRepository;
 import java.util.List;
-import java.util.Map;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import org.hibernate.Session;
-import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,31 +24,31 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository
 @Transactional
-public class ProductRepositoryImpl implements ProductRepository {
+public class CommentRepositoryImpl implements CommentRepository {
 
     @Autowired
     private LocalSessionFactoryBean factory;
-    @Autowired
-    private Environment env;
 
     @Override
-    public List<Product> getProducts(Map<String, String> param) {
+    public List<Comment> getCommentByPostId(int id) {
+
         Session s = this.factory.getObject().getCurrentSession();
         CriteriaBuilder b = s.getCriteriaBuilder();
-        CriteriaQuery<Product> q = b.createQuery(Product.class);
-        Root root = q.from(Product.class);
-        q.select(root);
+        CriteriaQuery<Comment> q = b.createQuery(Comment.class);
+        Root root = q.from(Comment.class);
 
-        if (param != null) {
-            String postId = param.get("postId");
-            if (postId != null && !postId.isEmpty()) {
-                q.where(b.equal(root.get("postId"), Integer.parseInt(postId)));
-            }
-        }
+        q.where(b.equal(root.get("postId").get("id"), id));
         q.orderBy(b.desc(root.get("id")));
 
-        Query query = s.createQuery(q);
+        org.hibernate.query.Query query = s.createQuery(q);
         return query.getResultList();
+    }
+
+    @Override
+    public Comment addComment(Comment cmnt) {
+       Session s = factory.getObject().getCurrentSession();
+       s.save(cmnt);
+       return cmnt;
     }
 
 }

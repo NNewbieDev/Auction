@@ -44,8 +44,7 @@ public class Role implements Serializable {
     @Column(name = "name")
     private String name;
     @OneToMany(mappedBy = "roleId")
-        @JsonIgnore
-
+    @JsonIgnore
     private Set<User> userSet;
 
     public Role() {

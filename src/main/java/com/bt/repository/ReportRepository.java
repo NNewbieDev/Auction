@@ -4,15 +4,14 @@
  */
 package com.bt.repository;
 
-import com.bt.pojo.Product;
-import java.util.List;
-import java.util.Map;
+import com.bt.pojo.Post;
+import com.bt.pojo.Report;
+import com.bt.pojo.User;
 
 /**
  *
  * @author admin
  */
-public interface ProductRepository {
-    List<Product> getProducts(Map<String, String> params);
-
+public interface ReportRepository {
+    Report addReport(Report report);
 }
