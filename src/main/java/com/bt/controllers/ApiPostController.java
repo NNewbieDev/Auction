@@ -37,11 +37,5 @@ public class ApiPostController {
         return new ResponseEntity<>(this.postServe.getPost(), HttpStatus.OK);
     }
 
-    @GetMapping("/posts/{date}")
-    @CrossOrigin
-    public ResponseEntity<Integer> countPost(@PathVariable("date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) {
-        int postCount = this.postServe.countPost(date);
-        return new ResponseEntity<>(postCount, HttpStatus.OK);
-    }
     
 }
