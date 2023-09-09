@@ -4,10 +4,15 @@
  */
 package com.bt.service;
 
+import com.bt.pojo.Comment;
+import java.util.List;
+
 /**
  *
  * @author vanli
  */
 public interface CommentService {
+    List<Comment> getCommentByPostId(int id);
+    Comment addComment(Comment comment);
     int countCmt(Integer postId);
 }

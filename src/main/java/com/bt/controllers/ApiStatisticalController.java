@@ -31,6 +31,13 @@ public class ApiStatisticalController {
     private PostService postService;
     @Autowired
     private LikeService likeService;
+    
+    @GetMapping("/posts/cmt/{postId}")
+    @CrossOrigin
+    public ResponseEntity<Integer> countCmt(@PathVariable(value = "postId") Integer postId) {
+        int cmtCount = this.commentService.countCmt(postId);
+        return new ResponseEntity<>(cmtCount, HttpStatus.OK);
+    }
 
     @GetMapping("/posts/{date}")
     @CrossOrigin

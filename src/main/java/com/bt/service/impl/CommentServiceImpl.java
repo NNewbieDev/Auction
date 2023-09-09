@@ -4,8 +4,10 @@
  */
 package com.bt.service.impl;
 
+import com.bt.pojo.Comment;
 import com.bt.repository.CommentRepository;
 import com.bt.service.CommentService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,8 +22,17 @@ public class CommentServiceImpl implements CommentService{
     private CommentRepository cmt;
     @Override
     public int countCmt(Integer postId) {
-//       return cmt.countCmt(postId);
-return 0;
+        return cmt.countCmt(postId);
+    }
+
+    @Override
+    public List<Comment> getCommentByPostId(int id) {
+        return cmt.getCommentByPostId(id);
+    }
+
+    @Override
+    public Comment addComment(Comment comment) {
+        return cmt.addComment(comment);
     }
     
     
