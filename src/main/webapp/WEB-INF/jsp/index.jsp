@@ -14,11 +14,8 @@
     </head>
     <body>
         <h1>Welcome</h1>
-        <ul>
-            <c:forEach items="${shop}" var="s">
-                <li> ${s.username}  </li>
-            </c:forEach>
-        </ul>
+
+
 
     </body>
 </html>

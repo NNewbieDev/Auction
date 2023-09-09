@@ -2,9 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.dht.service.impl;
+package com.bt.service.impl;
 
 
+import com.bt.pojo.Role;
 import com.bt.repository.UserRepository;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
@@ -31,8 +32,7 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @Service("userDetailsService")
 public class UserServiceImpl implements UserService {
-    
-
+   
     @Autowired
     private UserRepository userRepo;
     @Autowired
@@ -65,18 +65,18 @@ public class UserServiceImpl implements UserService {
     @Override
     public User addUser(Map<String, String> params, MultipartFile avatar) {
         User u = new User();
-//        u.setFirstName("b");
-//        u.setLastName("a");
-//        u.setPhone("3232131");
+        Role r = new Role();
+        r.setId(1);
+        u.setPhone("3232131");
         u.setEmail("ab@a");
         u.setUsername(params.get("username"));
         u.setPassword(this.passwordEncoder.encode(params.get("password")));
-//        u.setUserRole("ROLE_USER");
+        u.setRoleId(r);
         if (!avatar.isEmpty()) {
             try {
                 Map res = this.cloudinary.uploader().upload(avatar.getBytes(), 
                         ObjectUtils.asMap("resource_type", "auto"));
-                u.setAvatarUrl(res.get("secure_url").toString());
+                u.setAvatar(res.get("secure_url").toString());
             } catch (IOException ex) {
                 Logger.getLogger(UserServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
             }

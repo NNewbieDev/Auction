@@ -14,11 +14,15 @@ import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author admin
  */
+@Repository
+@Transactional
 public class StatsRepositoryImpl implements StatsRepository {
 
     @Autowired

@@ -36,8 +36,16 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
     @NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id = :id"),
     @NamedQuery(name = "User.findByUsername", query = "SELECT u FROM User u WHERE u.username = :username"),
-    @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email")})
+    @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email"),
+    @NamedQuery(name = "User.findByActive", query = "SELECT u FROM User u WHERE u.active = :active"),
+    @NamedQuery(name = "User.findByPhone", query = "SELECT u FROM User u WHERE u.phone = :phone"),
+    @NamedQuery(name = "User.findByAddress", query = "SELECT u FROM User u WHERE u.address = :address"),
+    @NamedQuery(name = "User.findByRoleId", query = "SELECT u FROM User u WHERE u.roleId = :roleId")})
 public class User implements Serializable {
+
+    @JoinColumn(name = "role_id", referencedColumnName = "id")
+    @ManyToOne
+    private Role roleId;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -61,12 +69,21 @@ public class User implements Serializable {
     @Column(name = "email")
     private String email;
     @Lob
-    @Size(max = 2147483647)
-    @Column(name = "avatar_url")
-    private String avatarUrl;
+    @Size(max = 16777215)
+    @Column(name = "avatar")
+    private String avatar;
+    @Column(name = "active")
+    private Boolean active;
+    // @Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$", message="Invalid phone/fax format, should be as xxx-xxx-xxxx")//if the field contains phone or fax number consider using this annotation to enforce field validation
+    @Size(max = 45)
+    @Column(name = "phone")
+    private String phone;
+    @Size(max = 255)
+    @Column(name = "address")
+    private String address;
     @OneToMany(mappedBy = "userId")
     @JsonIgnore
-    private Set<Like1> like1Set;
+    private Set<Likes> likesSet;
     @OneToMany(mappedBy = "userId")
     @JsonIgnore
     private Set<Auction> auctionSet;
@@ -85,9 +102,6 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "userId")
     @JsonIgnore
     private Set<Bid> bidSet;
-    @JoinColumn(name = "role_id", referencedColumnName = "id")
-    @ManyToOne
-    private Role roleId;
 
     public User() {
     }
@@ -134,21 +148,45 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public String getAvatarUrl() {
-        return avatarUrl;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setAvatarUrl(String avatarUrl) {
-        this.avatarUrl = avatarUrl;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     @XmlTransient
-    public Set<Like1> getLike1Set() {
-        return like1Set;
+    public Set<Likes> getLikesSet() {
+        return likesSet;
     }
 
-    public void setLike1Set(Set<Like1> like1Set) {
-        this.like1Set = like1Set;
+    public void setLikesSet(Set<Likes> likesSet) {
+        this.likesSet = likesSet;
     }
 
     @XmlTransient
@@ -205,14 +243,6 @@ public class User implements Serializable {
         this.bidSet = bidSet;
     }
 
-    public Role getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(Role roleId) {
-        this.roleId = roleId;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -236,6 +266,14 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "com.bt.pojo.User[ id=" + id + " ]";
+    }
+
+    public Role getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Role roleId) {
+        this.roleId = roleId;
     }
     
 }

@@ -4,16 +4,14 @@
  */
 package com.bt.controllers;
 
-import com.bt.pojo.Post;
-import com.bt.pojo.User;
+import com.bt.service.CommentService;
+import com.bt.service.LikeService;
 import com.bt.service.PostService;
 import java.util.Date;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,20 +20,30 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
- * @author admin
+ * @author vanli
  */
 @RestController
 @RequestMapping("/api")
-public class ApiPostController {
-
+public class ApiStatisticalController {
     @Autowired
-    private PostService postServe;
+    private CommentService commentService;
+    @Autowired
+    private PostService postService;
+    @Autowired
+    private LikeService likeService;
 
-    @GetMapping("/posts/")
+    @GetMapping("/posts/{date}")
     @CrossOrigin
-    public ResponseEntity<List<Post>> list() {
-        return new ResponseEntity<>(this.postServe.getPost(), HttpStatus.OK);
+    public ResponseEntity<Integer> countPost(@PathVariable("date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) {
+        int postCount = this.postService.countPost(date);
+        return new ResponseEntity<>(postCount, HttpStatus.OK);
     }
 
-    
+    @GetMapping("/posts/like/{postId}")
+    @CrossOrigin
+    public ResponseEntity<Integer> countLike(@PathVariable(value = "postId") Integer postId) {
+        int likeCount = this.likeService.countLike(postId);
+        return new ResponseEntity<>(likeCount, HttpStatus.OK);
+    }
+
 }

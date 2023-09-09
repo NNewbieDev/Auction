@@ -4,8 +4,10 @@
  */
 package com.bt.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,11 +19,13 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -61,9 +65,30 @@ public class Post implements Serializable {
     @Column(name = "create_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
+    @OneToMany(mappedBy = "postId")
+    @JsonIgnore
+    private Set<Product> productSet;
+    @OneToMany(mappedBy = "postId")
+    @JsonIgnore
+    private Set<Likes> likesSet;
+    @OneToMany(mappedBy = "postId")
+    @JsonIgnore
+    private Set<Notification> notificationSet;
+    @OneToMany(mappedBy = "userId")
+    @JsonIgnore
+    private Set<Notification> notificationSet1;
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne
     private User userId;
+    @OneToMany(mappedBy = "postId")
+    @JsonIgnore
+    private Set<Report> reportSet;
+    @OneToMany(mappedBy = "postId")
+    @JsonIgnore
+    private Set<Comment> commentSet;
+    @OneToMany(mappedBy = "postId")
+    @JsonIgnore
+    private Set<PostTag> postTagSet;
 
     public Post() {
     }
@@ -120,12 +145,75 @@ public class Post implements Serializable {
         this.createDate = createDate;
     }
 
+    @XmlTransient
+    public Set<Product> getProductSet() {
+        return productSet;
+    }
+
+    public void setProductSet(Set<Product> productSet) {
+        this.productSet = productSet;
+    }
+
+    @XmlTransient
+    public Set<Likes> getLikesSet() {
+        return likesSet;
+    }
+
+    public void setLikesSet(Set<Likes> likesSet) {
+        this.likesSet = likesSet;
+    }
+
+    @XmlTransient
+    public Set<Notification> getNotificationSet() {
+        return notificationSet;
+    }
+
+    public void setNotificationSet(Set<Notification> notificationSet) {
+        this.notificationSet = notificationSet;
+    }
+
+    @XmlTransient
+    public Set<Notification> getNotificationSet1() {
+        return notificationSet1;
+    }
+
+    public void setNotificationSet1(Set<Notification> notificationSet1) {
+        this.notificationSet1 = notificationSet1;
+    }
+
     public User getUserId() {
         return userId;
     }
 
     public void setUserId(User userId) {
         this.userId = userId;
+    }
+
+    @XmlTransient
+    public Set<Report> getReportSet() {
+        return reportSet;
+    }
+
+    public void setReportSet(Set<Report> reportSet) {
+        this.reportSet = reportSet;
+    }
+
+    @XmlTransient
+    public Set<Comment> getCommentSet() {
+        return commentSet;
+    }
+
+    public void setCommentSet(Set<Comment> commentSet) {
+        this.commentSet = commentSet;
+    }
+
+    @XmlTransient
+    public Set<PostTag> getPostTagSet() {
+        return postTagSet;
+    }
+
+    public void setPostTagSet(Set<PostTag> postTagSet) {
+        this.postTagSet = postTagSet;
     }
 
     @Override

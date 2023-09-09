@@ -18,7 +18,6 @@ public class DispatcherServeletInitializer extends AbstractAnnotationConfigDispa
             HibernateConfig.class,
             SpringSecurityConfig.class,
             JwtSecurityConfig.class
-
         };
     }
 

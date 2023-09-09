@@ -24,7 +24,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  * @author admin
  */
 @Configuration
-
 @PropertySource("classpath:databases.properties")
 public class HibernateConfig {
     @Autowired

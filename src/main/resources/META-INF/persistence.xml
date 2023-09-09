@@ -21,6 +21,7 @@
     <class>com.bt.pojo.Bid</class>
     <class>com.bt.pojo.Post</class>
     <class>com.bt.pojo.Product</class>
+    <class>com.bt.pojo.Likes</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/auction?zeroDateTimeBehavior=CONVERT_TO_NULL"/>

@@ -5,6 +5,7 @@
 package com.bt.service;
 
 import com.bt.pojo.Post;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -13,4 +14,5 @@ import java.util.List;
  */
 public interface PostService {
     List<Post> getPost();
+    int countPost(Date date);
 }

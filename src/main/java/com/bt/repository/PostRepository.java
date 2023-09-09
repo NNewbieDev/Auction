@@ -5,15 +5,18 @@
 package com.bt.repository;
 
 import com.bt.pojo.Post;
+import java.util.Date;
 import java.util.List;
 
 /**
  *
- * @author admin
+ * 
  */
 public interface PostRepository {
     List<Post> getPosts();
     boolean addOrPost(Post p);
     Post getPostById(int id);
     boolean deletePost(int id);
+    int countPost(Date date);
+
 }

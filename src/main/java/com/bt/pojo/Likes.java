@@ -26,9 +26,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "like")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Like1.findAll", query = "SELECT l FROM Like1 l"),
-    @NamedQuery(name = "Like1.findById", query = "SELECT l FROM Like1 l WHERE l.id = :id")})
-public class Like1 implements Serializable {
+    @NamedQuery(name = "Likes.findAll", query = "SELECT l FROM Likes l"),
+    @NamedQuery(name = "Likes.findById", query = "SELECT l FROM Likes l WHERE l.id = :id")})
+public class Likes implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -43,10 +43,10 @@ public class Like1 implements Serializable {
     @ManyToOne
     private User userId;
 
-    public Like1() {
+    public Likes() {
     }
 
-    public Like1(Integer id) {
+    public Likes(Integer id) {
         this.id = id;
     }
 
@@ -84,10 +84,10 @@ public class Like1 implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Like1)) {
+        if (!(object instanceof Likes)) {
             return false;
         }
-        Like1 other = (Like1) object;
+        Likes other = (Likes) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -96,7 +96,7 @@ public class Like1 implements Serializable {
 
     @Override
     public String toString() {
-        return "com.bt.pojo.Like1[ id=" + id + " ]";
+        return "com.bt.pojo.Likes[ id=" + id + " ]";
     }
     
 }
