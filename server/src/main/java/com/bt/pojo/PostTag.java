@@ -4,39 +4,31 @@
  */
 package com.bt.pojo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
-import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author admin
  */
 @Entity
-@Table(name = "role")
+@Table(name = "post_tag")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Role.findAll", query = "SELECT r FROM Role r"),
-    @NamedQuery(name = "Role.findById", query = "SELECT r FROM Role r WHERE r.id = :id"),
-    @NamedQuery(name = "Role.findByName", query = "SELECT r FROM Role r WHERE r.name = :name")})
-public class Role implements Serializable {
-
-    @OneToMany(mappedBy = "roleId")
-    @JsonIgnore
-    private Set<User> userSet;
+    @NamedQuery(name = "PostTag.findAll", query = "SELECT p FROM PostTag p"),
+    @NamedQuery(name = "PostTag.findById", query = "SELECT p FROM PostTag p WHERE p.id = :id")})
+public class PostTag implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -44,14 +36,14 @@ public class Role implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Size(max = 50)
-    @Column(name = "name")
-    private String name;
+    @JoinColumn(name = "post_id", referencedColumnName = "id")
+    @ManyToOne
+    private Post postId;
 
-    public Role() {
+    public PostTag() {
     }
 
-    public Role(Integer id) {
+    public PostTag(Integer id) {
         this.id = id;
     }
 
@@ -63,12 +55,12 @@ public class Role implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Post getPostId() {
+        return postId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPostId(Post postId) {
+        this.postId = postId;
     }
 
     @Override
@@ -81,10 +73,10 @@ public class Role implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Role)) {
+        if (!(object instanceof PostTag)) {
             return false;
         }
-        Role other = (Role) object;
+        PostTag other = (PostTag) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -93,16 +85,7 @@ public class Role implements Serializable {
 
     @Override
     public String toString() {
-        return "com.bt.pojo.Role[ id=" + id + " ]";
-    }
-
-    @XmlTransient
-    public Set<User> getUserSet() {
-        return userSet;
-    }
-
-    public void setUserSet(Set<User> userSet) {
-        this.userSet = userSet;
+        return "com.bt.pojo.PostTag[ id=" + id + " ]";
     }
     
 }

@@ -13,14 +13,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -28,13 +26,14 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author admin
  */
 @Entity
-@Table(name = "comment")
+@Table(name = "bid")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Comment.findAll", query = "SELECT c FROM Comment c"),
-    @NamedQuery(name = "Comment.findById", query = "SELECT c FROM Comment c WHERE c.id = :id"),
-    @NamedQuery(name = "Comment.findByCreateDate", query = "SELECT c FROM Comment c WHERE c.createDate = :createDate")})
-public class Comment implements Serializable {
+    @NamedQuery(name = "Bid.findAll", query = "SELECT b FROM Bid b"),
+    @NamedQuery(name = "Bid.findById", query = "SELECT b FROM Bid b WHERE b.id = :id"),
+    @NamedQuery(name = "Bid.findByBidAmount", query = "SELECT b FROM Bid b WHERE b.bidAmount = :bidAmount"),
+    @NamedQuery(name = "Bid.findByCreateDate", query = "SELECT b FROM Bid b WHERE b.createDate = :createDate")})
+public class Bid implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -42,24 +41,19 @@ public class Comment implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Lob
-    @Size(max = 2147483647)
-    @Column(name = "message")
-    private String message;
+    @Column(name = "bid_amount")
+    private Integer bidAmount;
     @Column(name = "create_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
-    @JoinColumn(name = "post_id", referencedColumnName = "id")
+    @JoinColumn(name = "auction_id", referencedColumnName = "id")
     @ManyToOne
-    private Post postId;
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    @ManyToOne
-    private User userId;
+    private Auction auctionId;
 
-    public Comment() {
+    public Bid() {
     }
 
-    public Comment(Integer id) {
+    public Bid(Integer id) {
         this.id = id;
     }
 
@@ -71,12 +65,12 @@ public class Comment implements Serializable {
         this.id = id;
     }
 
-    public String getMessage() {
-        return message;
+    public Integer getBidAmount() {
+        return bidAmount;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setBidAmount(Integer bidAmount) {
+        this.bidAmount = bidAmount;
     }
 
     public Date getCreateDate() {
@@ -87,20 +81,12 @@ public class Comment implements Serializable {
         this.createDate = createDate;
     }
 
-    public Post getPostId() {
-        return postId;
+    public Auction getAuctionId() {
+        return auctionId;
     }
 
-    public void setPostId(Post postId) {
-        this.postId = postId;
-    }
-
-    public User getUserId() {
-        return userId;
-    }
-
-    public void setUserId(User userId) {
-        this.userId = userId;
+    public void setAuctionId(Auction auctionId) {
+        this.auctionId = auctionId;
     }
 
     @Override
@@ -113,10 +99,10 @@ public class Comment implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Comment)) {
+        if (!(object instanceof Bid)) {
             return false;
         }
-        Comment other = (Comment) object;
+        Bid other = (Bid) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -125,7 +111,7 @@ public class Comment implements Serializable {
 
     @Override
     public String toString() {
-        return "com.bt.pojo.Comment[ id=" + id + " ]";
+        return "com.bt.pojo.Bid[ id=" + id + " ]";
     }
     
 }

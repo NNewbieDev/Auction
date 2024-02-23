@@ -12,13 +12,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -26,14 +26,13 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author admin
  */
 @Entity
-@Table(name = "bid")
+@Table(name = "comment")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Bid.findAll", query = "SELECT b FROM Bid b"),
-    @NamedQuery(name = "Bid.findById", query = "SELECT b FROM Bid b WHERE b.id = :id"),
-    @NamedQuery(name = "Bid.findByBidAmount", query = "SELECT b FROM Bid b WHERE b.bidAmount = :bidAmount"),
-    @NamedQuery(name = "Bid.findByCreateDate", query = "SELECT b FROM Bid b WHERE b.createDate = :createDate")})
-public class Bid implements Serializable {
+    @NamedQuery(name = "Comment.findAll", query = "SELECT c FROM Comment c"),
+    @NamedQuery(name = "Comment.findById", query = "SELECT c FROM Comment c WHERE c.id = :id"),
+    @NamedQuery(name = "Comment.findByCreateDate", query = "SELECT c FROM Comment c WHERE c.createDate = :createDate")})
+public class Comment implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -41,22 +40,18 @@ public class Bid implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Column(name = "bid_amount")
-    private Integer bidAmount;
+    @Lob
+    @Size(max = 2147483647)
+    @Column(name = "message")
+    private String message;
     @Column(name = "create_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
-    @JoinColumn(name = "auction_id", referencedColumnName = "id")
-    @ManyToOne
-    private Auction auctionId;
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    @ManyToOne
-    private User userId;
 
-    public Bid() {
+    public Comment() {
     }
 
-    public Bid(Integer id) {
+    public Comment(Integer id) {
         this.id = id;
     }
 
@@ -68,12 +63,12 @@ public class Bid implements Serializable {
         this.id = id;
     }
 
-    public Integer getBidAmount() {
-        return bidAmount;
+    public String getMessage() {
+        return message;
     }
 
-    public void setBidAmount(Integer bidAmount) {
-        this.bidAmount = bidAmount;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public Date getCreateDate() {
@@ -82,22 +77,6 @@ public class Bid implements Serializable {
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
-    }
-
-    public Auction getAuctionId() {
-        return auctionId;
-    }
-
-    public void setAuctionId(Auction auctionId) {
-        this.auctionId = auctionId;
-    }
-
-    public User getUserId() {
-        return userId;
-    }
-
-    public void setUserId(User userId) {
-        this.userId = userId;
     }
 
     @Override
@@ -110,10 +89,10 @@ public class Bid implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Bid)) {
+        if (!(object instanceof Comment)) {
             return false;
         }
-        Bid other = (Bid) object;
+        Comment other = (Comment) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -122,7 +101,7 @@ public class Bid implements Serializable {
 
     @Override
     public String toString() {
-        return "com.bt.pojo.Bid[ id=" + id + " ]";
+        return "com.bt.pojo.Comment[ id=" + id + " ]";
     }
     
 }

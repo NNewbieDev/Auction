@@ -11,11 +11,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -23,12 +23,12 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author admin
  */
 @Entity
-@Table(name = "post_tag")
+@Table(name = "report")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "PostTag.findAll", query = "SELECT p FROM PostTag p"),
-    @NamedQuery(name = "PostTag.findById", query = "SELECT p FROM PostTag p WHERE p.id = :id")})
-public class PostTag implements Serializable {
+    @NamedQuery(name = "Report.findAll", query = "SELECT r FROM Report r"),
+    @NamedQuery(name = "Report.findById", query = "SELECT r FROM Report r WHERE r.id = :id")})
+public class Report implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -36,17 +36,15 @@ public class PostTag implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @JoinColumn(name = "post_id", referencedColumnName = "id")
-    @ManyToOne
-    private Post postId;
-    @JoinColumn(name = "tag_id", referencedColumnName = "id")
-    @ManyToOne
-    private Tag tagId;
+    @Lob
+    @Size(max = 2147483647)
+    @Column(name = "reason")
+    private String reason;
 
-    public PostTag() {
+    public Report() {
     }
 
-    public PostTag(Integer id) {
+    public Report(Integer id) {
         this.id = id;
     }
 
@@ -58,20 +56,12 @@ public class PostTag implements Serializable {
         this.id = id;
     }
 
-    public Post getPostId() {
-        return postId;
+    public String getReason() {
+        return reason;
     }
 
-    public void setPostId(Post postId) {
-        this.postId = postId;
-    }
-
-    public Tag getTagId() {
-        return tagId;
-    }
-
-    public void setTagId(Tag tagId) {
-        this.tagId = tagId;
+    public void setReason(String reason) {
+        this.reason = reason;
     }
 
     @Override
@@ -84,10 +74,10 @@ public class PostTag implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof PostTag)) {
+        if (!(object instanceof Report)) {
             return false;
         }
-        PostTag other = (PostTag) object;
+        Report other = (Report) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -96,7 +86,7 @@ public class PostTag implements Serializable {
 
     @Override
     public String toString() {
-        return "com.bt.pojo.PostTag[ id=" + id + " ]";
+        return "com.bt.pojo.Report[ id=" + id + " ]";
     }
     
 }

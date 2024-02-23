@@ -5,6 +5,7 @@
 package com.bt.pojo;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,11 +13,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -25,12 +27,14 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author admin
  */
 @Entity
-@Table(name = "report")
+@Table(name = "notification")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Report.findAll", query = "SELECT r FROM Report r"),
-    @NamedQuery(name = "Report.findById", query = "SELECT r FROM Report r WHERE r.id = :id")})
-public class Report implements Serializable {
+    @NamedQuery(name = "Notification.findAll", query = "SELECT n FROM Notification n"),
+    @NamedQuery(name = "Notification.findById", query = "SELECT n FROM Notification n WHERE n.id = :id"),
+    @NamedQuery(name = "Notification.findByCreateDate", query = "SELECT n FROM Notification n WHERE n.createDate = :createDate"),
+    @NamedQuery(name = "Notification.findByType", query = "SELECT n FROM Notification n WHERE n.type = :type")})
+public class Notification implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -38,21 +42,23 @@ public class Report implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Lob
-    @Size(max = 2147483647)
-    @Column(name = "reason")
-    private String reason;
+    @Column(name = "create_date")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createDate;
+    @Size(max = 45)
+    @Column(name = "type")
+    private String type;
     @JoinColumn(name = "post_id", referencedColumnName = "id")
     @ManyToOne
     private Post postId;
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     @ManyToOne
-    private User userId;
+    private Post userId;
 
-    public Report() {
+    public Notification() {
     }
 
-    public Report(Integer id) {
+    public Notification(Integer id) {
         this.id = id;
     }
 
@@ -64,12 +70,20 @@ public class Report implements Serializable {
         this.id = id;
     }
 
-    public String getReason() {
-        return reason;
+    public Date getCreateDate() {
+        return createDate;
     }
 
-    public void setReason(String reason) {
-        this.reason = reason;
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public Post getPostId() {
@@ -80,11 +94,11 @@ public class Report implements Serializable {
         this.postId = postId;
     }
 
-    public User getUserId() {
+    public Post getUserId() {
         return userId;
     }
 
-    public void setUserId(User userId) {
+    public void setUserId(Post userId) {
         this.userId = userId;
     }
 
@@ -98,10 +112,10 @@ public class Report implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Report)) {
+        if (!(object instanceof Notification)) {
             return false;
         }
-        Report other = (Report) object;
+        Notification other = (Notification) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -110,7 +124,7 @@ public class Report implements Serializable {
 
     @Override
     public String toString() {
-        return "com.bt.pojo.Report[ id=" + id + " ]";
+        return "com.bt.pojo.Notification[ id=" + id + " ]";
     }
     
 }
