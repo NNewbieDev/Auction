@@ -1,0 +1,37 @@
+@import "../global.scss";
+
+.search {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+
+  &_input {
+    position: relative;
+    width: 50%;
+    @include dropShadow($blackAlpha0125);
+    & > input {
+      width: 100%;
+      background-color: transparent;
+      color: var(--text);
+      padding: 10px 20px;
+      border-radius: 20rem;
+      border-width: 1px;
+      @include borderThin($red);
+      &:focus-within + .search_icon {
+        filter: drop-shadow(0 0 1px var(--main-color))
+          drop-shadow(0 0 2px var(--main-color))
+          drop-shadow(0 0 3px var(--main-color));
+      }
+    }
+  }
+  &_icon {
+    position: absolute;
+    font-size: small;
+    right: 1rem;
+    font-weight: 500;
+    color: $red;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}

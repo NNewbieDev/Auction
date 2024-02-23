@@ -1,0 +1,36 @@
+@import "../global.scss";
+
+.block_handle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+}
+
+.come_sign_up {
+  width: 5rem;
+  font-size: 0.8rem;
+  font-style: italic;
+  font-weight: 500;
+  color: $black;
+  &:hover {
+    color: $red;
+  }
+}
+
+.btn_login {
+  width: 8rem;
+  font-size: 0.9rem;
+  background-color: $white;
+  text-align: center;
+  border-radius: 0.2rem;
+  color: $black;
+  padding: 0.75rem;
+  @include borderThin($black);
+
+  &:hover {
+    cursor: pointer;
+    color: $red;
+  }
+}

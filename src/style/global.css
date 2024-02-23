@@ -1,0 +1,101 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,700&display=swap");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: all 0.15s linear;
+}
+
+:root {
+  --text: #000;
+  --main-color: #e8ffce;
+  --secondary-color: #acfadf;
+  --alpha: 0.5;
+}
+
+html {
+  font-family: "Fira Sans Condensed", sans-serif;
+  font-size: 18px;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.relative {
+  position: relative;
+}
+
+body.dark {
+  background-color: #16213e;
+}
+
+.flex {
+  display: flex;
+}
+
+.layout_20 {
+  width: 20%;
+}
+.layout_20_center {
+  width: 20%;
+  margin: 0 auto;
+}
+
+.layout_30 {
+  width: 30%;
+}
+.layout_30_center {
+  width: 30%;
+  margin: 0 auto;
+}
+
+.layout_70 {
+  width: 70%;
+}
+.layout_70_center {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.layout_full {
+  width: 100%;
+}
+
+.layout_80 {
+  width: 80%;
+}
+.layout_80_center {
+  width: 80%;
+  margin: 0 auto;
+}
+
+*.dark {
+  --text: #fff;
+  --main-color: #acfadf !important;
+}
+
+*.main_blue {
+  --main-color: #acfadf !important;
+}
+
+*.main_green {
+  --main-color: #e8ffce !important;
+}
+
+@media (max-width: 1023px) {
+  .layout_20,
+  .layout_30,
+  .layout_70,
+  .layout_80 {
+    display: block;
+    width: 100%;
+  }
+  .flex {
+    flex-direction: column;
+  }
+}/*# sourceMappingURL=global.css.map */

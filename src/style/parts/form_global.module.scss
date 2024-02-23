@@ -1,0 +1,66 @@
+@import "../global.scss";
+
+.title {
+  text-align: center;
+  color: $red;
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0.1rem;
+  text-shadow: 0 0 1px $white, 0 0 2px $white;
+}
+
+.form {
+  &_frame {
+    width: 50%;
+    margin: 1.25rem auto;
+    border-radius: 0.5rem;
+    background-color: var(--main-color);
+    padding: 1rem 1.5rem;
+    @include borderThin(var(--text));
+    @include boxShadowOutside($blackAlpha0125);
+  }
+  &_input {
+    position: relative;
+    & input {
+      width: 100%;
+      margin-block: 0.5rem;
+      border-radius: 2rem;
+      padding: 0.7rem 3rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      @include borderThin($black);
+
+      &::placeholder {
+        font-style: italic;
+        color: $blackAlpha50;
+      }
+    }
+  }
+  &_icon {
+    position: absolute;
+    left: 1rem;
+    z-index: 99;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.8rem;
+    color: $blackAlpha50;
+  }
+}
+
+.back_home {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  filter: drop-shadow(0 0 0.1rem $black);
+
+  &_icon {
+    font-size: 2rem;
+    color: var(--main-color);
+    cursor: pointer;
+    &:hover {
+      filter: drop-shadow(0 0 0.2rem $black);
+    }
+  }
+}

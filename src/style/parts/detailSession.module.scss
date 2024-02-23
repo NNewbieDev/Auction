@@ -1,0 +1,157 @@
+@import "../global.scss";
+
+.session {
+  position: relative;
+  width: 100%;
+  height: 20rem;
+  @include boxShadowOutside($blackAlpha0125);
+
+  & img {
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+    @include dropShadow(var(--main-color));
+  }
+
+  &_react,
+  &_date,
+  &_subject {
+    position: absolute;
+    color: var(--main-color);
+    padding: 0.5rem 1rem;
+    border-left: 0.5rem solid var(--main-color);
+    border-right: 0.5rem solid var(--main-color);
+    border-radius: 50%;
+    @include alphaBgColor($black, 0.5);
+  }
+
+  &_react {
+    top: 1rem;
+    right: 1rem;
+
+    & div {
+      padding-bottom: 0.25rem;
+    }
+    & span {
+      color: var(--main-color);
+
+      padding-left: 0.5rem;
+    }
+  }
+  &_date {
+    top: 1rem;
+    left: 1rem;
+  }
+
+  &_subject {
+    top: 50%;
+    left: 50%;
+    font-size: 2rem;
+    font-weight: 500;
+    transform: translate(-50%);
+  }
+}
+
+.container_item {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.item_session {
+  width: 20%;
+  border-radius: 1rem;
+  padding: 1rem;
+  @include borderThin(var(--text));
+  @include boxShadowOutside($blackAlpha0125);
+  &_img {
+    width: 100%;
+    height: 50%;
+    & > img {
+      width: 100%;
+      height: 100%;
+      border-radius: 1rem;
+      @include dropShadow(var(--main-color));
+    }
+  }
+
+  &_info {
+    padding: 1rem;
+    display: flex;
+    color: var(--text);
+    flex-direction: column;
+    gap: 0.5rem;
+    @include dropShadow($blackAlpha0125);
+  }
+
+  &_seller {
+    display: flex;
+    justify-content: space-between;
+    color: var(--text);
+    & > div {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    & > div:first-child {
+    }
+  }
+
+  &_avatar {
+    width: 1.5rem;
+    height: 1.5rem;
+    & img {
+      padding: 0.1rem;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      @include borderThin(var(--text));
+    }
+  }
+
+  &_date {
+    font-size: 0.9rem;
+    font-weight: 500;
+    font-style: italic;
+    color: var(--text);
+  }
+
+  &_subject {
+    color: $red;
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: 1.25px;
+    text-shadow: 0 0 1px $white, 0 0 3px $white;
+  }
+}
+
+.btn_join {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $red;
+  color: $white;
+  margin-top: 1rem;
+  line-height: 2.5rem;
+  border-radius: 1rem;
+  @include dropShadow($blackAlpha50);
+
+  &:hover {
+    @include alphaBgColor($red, 0.5);
+    cursor: pointer;
+  }
+}
+
+.btn_closing {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $red;
+  color: $white;
+  opacity: 0.3;
+  margin-top: 1rem;
+  line-height: 2.5rem;
+  border-radius: 1rem;
+  cursor: not-allowed;
+  @include dropShadow($blackAlpha50);
+}

@@ -1,0 +1,89 @@
+@import "../global.scss";
+
+.block_nav {
+  width: 80%;
+  border-radius: 0.25rem;
+  padding: 1rem 1rem 1rem 0;
+  border-left: none;
+}
+
+.nav_item {
+  width: 80%;
+  padding: 1rem 0 1rem 1rem;
+  border-top-right-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  color: $black;
+  background: $white;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  @include borderThin(var(--text));
+  border-left: none;
+  @include boxShadowOutside($blackAlpha0125);
+
+  & > div:first-child {
+    margin-right: 0.5rem;
+  }
+
+  &:hover {
+    width: 100%;
+    background-color: var(--main-color);
+    color: $red;
+  }
+}
+
+.pallete_color {
+  width: 100%;
+
+  &_green,
+  &_blue {
+    width: 80%;
+    cursor: pointer;
+    padding: 1rem 0 1rem 1rem;
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    margin-bottom: 0.5rem;
+    @include borderThin(var(--text));
+    border-left: none;
+    @include boxShadowOutside($blackAlpha0125);
+    &:hover {
+      width: 100%;
+    }
+  }
+
+  &_green {
+    background-color: $green;
+  }
+  &_blue {
+    background-color: $blue;
+  }
+}
+
+.menu {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .menu {
+    position: absolute;
+    background-color: $red;
+    display: block;
+  }
+  .nav {
+    position: fixed;
+    z-index: 99;
+  }
+
+  .block_nav {
+    position: fixed;
+    display: none;
+    &.active {
+      display: flex;
+    }
+    & > div {
+      width: 50%;
+    }
+  }
+  .nav_item {
+    flex-direction: row !important;
+  }
+}

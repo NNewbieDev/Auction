@@ -1,0 +1,171 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,700&display=swap");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: all 0.15s linear;
+}
+
+:root {
+  --text: #000;
+  --main-color: #e8ffce;
+  --secondary-color: #acfadf;
+  --alpha: 0.5;
+}
+
+html {
+  font-family: "Fira Sans Condensed", sans-serif;
+  font-size: 18px;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.relative {
+  position: relative;
+}
+
+body.dark {
+  background-color: #16213e;
+}
+
+.flex {
+  display: flex;
+}
+
+.layout_20 {
+  width: 20%;
+}
+.layout_20_center {
+  width: 20%;
+  margin: 0 auto;
+}
+
+.layout_30 {
+  width: 30%;
+}
+.layout_30_center {
+  width: 30%;
+  margin: 0 auto;
+}
+
+.layout_70 {
+  width: 70%;
+}
+.layout_70_center {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.layout_full {
+  width: 100%;
+}
+
+.layout_80 {
+  width: 80%;
+}
+.layout_80_center {
+  width: 80%;
+  margin: 0 auto;
+}
+
+*.dark {
+  --text: #fff;
+  --main-color: #acfadf !important;
+}
+
+*.main_blue {
+  --main-color: #acfadf !important;
+}
+
+*.main_green {
+  --main-color: #e8ffce !important;
+}
+
+@media (max-width: 1023px) {
+  .layout_20,
+  .layout_30,
+  .layout_70,
+  .layout_80 {
+    display: block;
+    width: 100%;
+  }
+  .flex {
+    flex-direction: column;
+  }
+}
+.box {
+  position: relative;
+  margin-top: 5rem;
+  width: 20%;
+  display: flex;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--text);
+}
+.box_info {
+  color: var(--text);
+  width: 80%;
+}
+.box_icon {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text);
+  border-left: 1px solid var(--text);
+}
+.box_icon:hover {
+  background-color: var(--main-color);
+  cursor: pointer;
+  border-radius: 0.5rem;
+}
+.box_drop_down {
+  position: absolute;
+  bottom: -100%;
+  left: 50%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  color: var(--text);
+  gap: 0.5rem;
+  transform: translateX(-50%);
+}
+.box_drop_down > div:last-child {
+  padding: 0.25rem 0.4rem;
+  border-radius: 50%;
+  border: 1px solid var(--text);
+}
+.box_drop_down > div:last-child:hover {
+  cursor: pointer;
+  background-color: var(--main-color);
+}
+
+.info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+.info_user {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  width: 90%;
+  text-align: center;
+  color: var(--text);
+  border: 1px solid var(--text);
+  border-bottom: none;
+  padding: 0.3rem 1rem 0.3rem 1rem;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transform: translateX(-50%);
+}/*# sourceMappingURL=infoUser.module.css.map */

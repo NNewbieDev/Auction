@@ -1,0 +1,182 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,700&display=swap");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: all 0.15s linear;
+}
+
+:root {
+  --text: #000;
+  --main-color: #e8ffce;
+  --secondary-color: #acfadf;
+  --alpha: 0.5;
+}
+
+html {
+  font-family: "Fira Sans Condensed", sans-serif;
+  font-size: 18px;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.relative {
+  position: relative;
+}
+
+body.dark {
+  background-color: #16213e;
+}
+
+.flex {
+  display: flex;
+}
+
+.layout_20 {
+  width: 20%;
+}
+.layout_20_center {
+  width: 20%;
+  margin: 0 auto;
+}
+
+.layout_30 {
+  width: 30%;
+}
+.layout_30_center {
+  width: 30%;
+  margin: 0 auto;
+}
+
+.layout_70 {
+  width: 70%;
+}
+.layout_70_center {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.layout_full {
+  width: 100%;
+}
+
+.layout_80 {
+  width: 80%;
+}
+.layout_80_center {
+  width: 80%;
+  margin: 0 auto;
+}
+
+*.dark {
+  --text: #fff;
+  --main-color: #acfadf !important;
+}
+
+*.main_blue {
+  --main-color: #acfadf !important;
+}
+
+*.main_green {
+  --main-color: #e8ffce !important;
+}
+
+@media (max-width: 1023px) {
+  .layout_20,
+  .layout_30,
+  .layout_70,
+  .layout_80 {
+    display: block;
+    width: 100%;
+  }
+  .flex {
+    flex-direction: column;
+  }
+}
+.block_nav {
+  width: 80%;
+  border-radius: 0.25rem;
+  padding: 1rem 1rem 1rem 0;
+  border-left: none;
+}
+
+.nav_item {
+  width: 80%;
+  padding: 1rem 0 1rem 1rem;
+  border-top-right-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  color: #000;
+  background: #fff;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  border: 1px solid var(--text);
+  border-left: none;
+  box-shadow: 5px 5px 15px 1px rgba(0, 0, 0, 0.125);
+}
+.nav_item > div:first-child {
+  margin-right: 0.5rem;
+}
+.nav_item:hover {
+  width: 100%;
+  background-color: var(--main-color);
+  color: #a00202;
+}
+
+.pallete_color {
+  width: 100%;
+}
+.pallete_color_green, .pallete_color_blue {
+  width: 80%;
+  cursor: pointer;
+  padding: 1rem 0 1rem 1rem;
+  border-top-right-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid var(--text);
+  border-left: none;
+  box-shadow: 5px 5px 15px 1px rgba(0, 0, 0, 0.125);
+}
+.pallete_color_green:hover, .pallete_color_blue:hover {
+  width: 100%;
+}
+.pallete_color_green {
+  background-color: #e8ffce;
+}
+.pallete_color_blue {
+  background-color: #acfadf;
+}
+
+.menu {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .menu {
+    position: absolute;
+    background-color: #a00202;
+    display: block;
+  }
+  .nav {
+    position: fixed;
+    z-index: 99;
+  }
+  .block_nav {
+    position: fixed;
+    display: none;
+  }
+  .block_nav.active {
+    display: flex;
+  }
+  .block_nav > div {
+    width: 50%;
+  }
+  .nav_item {
+    flex-direction: row !important;
+  }
+}/*# sourceMappingURL=navigation.module.css.map */

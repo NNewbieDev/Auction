@@ -1,0 +1,111 @@
+@import "../global.scss";
+
+.block_slider {
+  position: relative;
+  width: 90%;
+  height: 20rem;
+  margin: 0 auto;
+  padding: 1rem;
+  border-radius: 0.2rem;
+  @include borderThin(var(--text));
+  @include boxShadowOutside($blackAlpha0125);
+  &:hover .btn_prev,
+  &:hover .btn_next {
+    opacity: 1;
+  }
+}
+
+.screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  @include borderThin(var(--text));
+  border-radius: 0.5rem;
+
+  &_item {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 0.5rem;
+    background-color: antiquewhite;
+
+    &_date {
+      position: absolute;
+      font-weight: 500;
+      top: 1rem;
+      color: var(--main-color);
+      left: 50%;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      border-left: 0.5rem solid $red;
+      border-right: 0.5rem solid $red;
+      border-radius: 50%;
+      transform: translateX(-50%);
+      text-shadow: 0 0 0.5px $green, 0 0 2px $green, 0 0 3px $green,
+        0 0 4px $red, 0 0 5px $red;
+    }
+
+    &_subject {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 2rem;
+      font-weight: 500;
+      color: var(--main-color);
+      text-shadow: 0 0 0.5px var(--main-color), 0 0 1px var(--main-color),
+        0 0 2px var(--main-color), 0 0 3px var(--main-color), 0 0 4px $red,
+        1px 1px 5px $red;
+    }
+
+    &_detail {
+      position: absolute;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: $red;
+      padding: 1rem;
+      border-radius: 0.2rem;
+      font-weight: 500;
+      color: var(--main-color);
+      @include dropShadow($blackAlpha50);
+      &:hover {
+        cursor: pointer;
+        opacity: 0.75;
+      }
+    }
+
+    & img {
+      border-radius: 0.5rem;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.btn {
+  &_prev,
+  &_next {
+    position: absolute;
+    opacity: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2rem;
+    height: 2rem;
+    background-color: var(--main-color);
+    color: var(--text);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    @include borderThin(var(--text));
+  }
+  &_prev {
+    left: 2rem;
+  }
+  &_next {
+    right: 2rem;
+  }
+}

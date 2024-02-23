@@ -1,0 +1,147 @@
+@import "../global.scss";
+
+.block {
+  &_list {
+    width: 85%;
+    margin: 1rem auto;
+    &_item {
+      margin: 0.5rem 0;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      @include borderThin(var(--text));
+      @include boxShadowOutside($blackAlpha0125);
+      border-radius: 8px;
+    }
+  }
+  &_item {
+    &_image {
+      padding: 1rem;
+      width: 200px;
+      height: 200px;
+      flex: 1 30%;
+      & > img {
+        width: 100%;
+        height: 100%;
+        border-radius: 0.5rem;
+        @include borderThin(var(--main-color));
+        @include dropShadow(var(--main-color));
+      }
+    }
+    &_info {
+      height: 100%;
+      align-items: center;
+      padding: 1rem;
+      flex: 1 70%;
+    }
+  }
+}
+
+.item {
+  &_info {
+    display: flex;
+    justify-content: space-between;
+  }
+  &_text {
+    flex: 1 60%;
+    color: var(--text);
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9rem;
+    & div {
+      padding-bottom: 0.25rem;
+    }
+    & > div:first-child {
+      width: fit-content;
+      margin-bottom: 0.2rem;
+      padding: 0.5rem 1rem;
+      border-left: 0.5rem solid var(--main-color);
+      border-right: 0.5rem solid var(--main-color);
+      border-radius: 50%;
+    }
+    & > div:not(:first-child, :last-child) {
+      display: flex;
+      font-weight: 400;
+      & > div:first-child {
+        width: 1.5rem;
+        text-align: center;
+      }
+    }
+
+    & > div:last-child {
+      display: flex;
+      gap: 1rem;
+    }
+  }
+  &_next {
+    width: 8rem;
+    height: 100%;
+    padding: 0.2rem;
+    border-radius: 0.2rem;
+    @include borderThin(var(--text));
+    & > img {
+      width: 100%;
+      height: 100%;
+      border-radius: 0.2rem;
+    }
+  }
+
+  &_subject {
+    color: $red;
+    font-size: 1.35rem;
+    text-shadow: 0 0 1px $white, 0 0 3px $white;
+  }
+
+  &_react {
+    & div {
+      padding-bottom: 0.25rem;
+    }
+    & span {
+      color: var(--text);
+      padding-left: 0.5rem;
+    }
+  }
+}
+
+.icon_react {
+  color: $red;
+  @include dropShadow($blackAlpha0125);
+}
+
+.btn_detail {
+  float: left;
+  margin-top: 1rem;
+  margin-right: 1rem;
+  width: 10rem;
+  height: 3rem;
+  color: $red;
+  font-weight: 500;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--main-color);
+  @include borderThin(var(--text));
+  @include dropShadow($blackAlpha0125);
+  &:hover {
+    opacity: 0.5;
+    cursor: pointer;
+  }
+}
+
+.more_post {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  & > div {
+    background-color: $white;
+    padding: 1rem;
+    border-radius: 1rem;
+    @include borderThin($black);
+    &:hover {
+      cursor: pointer;
+      background-color: var(--main-color);
+    }
+  }
+}

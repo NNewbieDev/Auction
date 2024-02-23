@@ -1,0 +1,165 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,700&display=swap");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: all 0.15s linear;
+}
+
+:root {
+  --text: #000;
+  --main-color: #e8ffce;
+  --secondary-color: #acfadf;
+  --alpha: 0.5;
+}
+
+html {
+  font-family: "Fira Sans Condensed", sans-serif;
+  font-size: 18px;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.relative {
+  position: relative;
+}
+
+body.dark {
+  background-color: #16213e;
+}
+
+.flex {
+  display: flex;
+}
+
+.layout_20 {
+  width: 20%;
+}
+.layout_20_center {
+  width: 20%;
+  margin: 0 auto;
+}
+
+.layout_30 {
+  width: 30%;
+}
+.layout_30_center {
+  width: 30%;
+  margin: 0 auto;
+}
+
+.layout_70 {
+  width: 70%;
+}
+.layout_70_center {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.layout_full {
+  width: 100%;
+}
+
+.layout_80 {
+  width: 80%;
+}
+.layout_80_center {
+  width: 80%;
+  margin: 0 auto;
+}
+
+*.dark {
+  --text: #fff;
+  --main-color: #acfadf !important;
+}
+
+*.main_blue {
+  --main-color: #acfadf !important;
+}
+
+*.main_green {
+  --main-color: #e8ffce !important;
+}
+
+@media (max-width: 1023px) {
+  .layout_20,
+  .layout_30,
+  .layout_70,
+  .layout_80 {
+    display: block;
+    width: 100%;
+  }
+  .flex {
+    flex-direction: column;
+  }
+}
+.title {
+  text-align: center;
+  color: #a00202;
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0.1rem;
+  text-shadow: 0 0 1px #fff, 0 0 2px #fff;
+}
+
+.form_frame {
+  width: 50%;
+  margin: 1.25rem auto;
+  border-radius: 0.5rem;
+  background-color: var(--main-color);
+  padding: 1rem 1.5rem;
+  border: 1px solid var(--text);
+  box-shadow: 5px 5px 15px 1px rgba(0, 0, 0, 0.125);
+}
+.form_input {
+  position: relative;
+}
+.form_input input {
+  width: 100%;
+  margin-block: 0.5rem;
+  border-radius: 2rem;
+  padding: 0.7rem 3rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border: 1px solid #000;
+}
+.form_input input::-moz-placeholder {
+  font-style: italic;
+  color: rgba(0, 0, 0, 0.5);
+}
+.form_input input::placeholder {
+  font-style: italic;
+  color: rgba(0, 0, 0, 0.5);
+}
+.form_icon {
+  position: absolute;
+  left: 1rem;
+  z-index: 99;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.8rem;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.back_home {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  filter: drop-shadow(0 0 0.1rem #000);
+}
+.back_home_icon {
+  font-size: 2rem;
+  color: var(--main-color);
+  cursor: pointer;
+}
+.back_home_icon:hover {
+  filter: drop-shadow(0 0 0.2rem #000);
+}/*# sourceMappingURL=form_global.module.css.map */

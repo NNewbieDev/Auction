@@ -1,0 +1,210 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,700&display=swap");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: all 0.15s linear;
+}
+
+:root {
+  --text: #000;
+  --main-color: #e8ffce;
+  --secondary-color: #acfadf;
+  --alpha: 0.5;
+}
+
+html {
+  font-family: "Fira Sans Condensed", sans-serif;
+  font-size: 18px;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.relative {
+  position: relative;
+}
+
+body.dark {
+  background-color: #16213e;
+}
+
+.flex {
+  display: flex;
+}
+
+.layout_20 {
+  width: 20%;
+}
+.layout_20_center {
+  width: 20%;
+  margin: 0 auto;
+}
+
+.layout_30 {
+  width: 30%;
+}
+.layout_30_center {
+  width: 30%;
+  margin: 0 auto;
+}
+
+.layout_70 {
+  width: 70%;
+}
+.layout_70_center {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.layout_full {
+  width: 100%;
+}
+
+.layout_80 {
+  width: 80%;
+}
+.layout_80_center {
+  width: 80%;
+  margin: 0 auto;
+}
+
+*.dark {
+  --text: #fff;
+  --main-color: #acfadf !important;
+}
+
+*.main_blue {
+  --main-color: #acfadf !important;
+}
+
+*.main_green {
+  --main-color: #e8ffce !important;
+}
+
+@media (max-width: 1023px) {
+  .layout_20,
+  .layout_30,
+  .layout_70,
+  .layout_80 {
+    display: block;
+    width: 100%;
+  }
+  .flex {
+    flex-direction: column;
+  }
+}
+.block_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 60px;
+  box-shadow: inset 0 -0.4rem var(--main-color);
+  margin-bottom: 0.5rem;
+}
+
+.icon_user {
+  position: relative;
+  line-height: 60px;
+  padding: 0 1.25rem;
+  margin-right: 1rem;
+  color: var(--text);
+  cursor: pointer;
+}
+.icon_user:hover {
+  color: #a00202;
+}
+
+.avatar {
+  position: relative;
+  width: 3rem;
+  height: 3rem;
+  margin-right: 1rem;
+  color: var(--text);
+  padding: 0.3rem;
+}
+.avatar:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+.avatar > img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.context_user {
+  position: absolute;
+  z-index: 99;
+  background-color: #fff;
+  min-width: 12rem;
+  border-radius: 0.2rem;
+  top: 100%;
+  right: 0;
+  filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.125));
+  border: 1px solid var(--text);
+}
+
+.context_item {
+  color: #000;
+  padding: 0.2rem 0.75rem;
+  cursor: pointer;
+  filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.125));
+}
+.context_item:hover {
+  color: #a00202;
+  background-color: var(--main-color);
+}
+.context_item_icon {
+  padding-right: 0.5rem;
+}
+.next_time {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #a00202;
+  text-shadow: 0 0 2px #fff, 0 0 4px #fff;
+}
+.next_time_session {
+  font-size: 0.75rem;
+  margin-left: 2.25rem;
+}
+.next_time_session > div:first-child {
+  color: var(--text);
+}
+
+.switch_mode > label {
+  position: relative;
+  margin: 0 0.5rem;
+  padding: 0.5rem 3rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 2rem;
+  cursor: pointer;
+  border: 1px solid #000;
+}
+.switch_mode > label::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0.75rem;
+  transform: translateY(-50%);
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background-color: #e8ffce;
+  transition: all 0.3s linear;
+  border: 1px solid var(--text);
+}
+.switch_mode input {
+  visibility: hidden;
+}
+.switch_mode input:checked + label::before {
+  top: 50%;
+  transform: translate(200%, -50%);
+  background-color: #acfadf;
+}/*# sourceMappingURL=layout.module.css.map */

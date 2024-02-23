@@ -1,0 +1,265 @@
+@import "../global.scss";
+
+.item {
+  width: 70%;
+
+  & > h2 {
+    font-weight: 500;
+  }
+
+  &_img {
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+
+    & > div > img {
+      height: 100%;
+      width: 100%;
+      border-radius: 0.5rem;
+    }
+
+    & > div:first-child {
+      flex: 1 10%;
+      width: 5rem;
+      height: 5rem;
+      @include boxShadowOutside($blackAlpha0125);
+
+      &:hover {
+        cursor: pointer;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        @include borderThin(var(--text));
+      }
+    }
+
+    & > div:nth-child(2) {
+      flex: 1 90%;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      @include borderThin(var(--text));
+      @include dropShadow($blackAlpha0125);
+    }
+  }
+
+  &_reaction {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    border-radius: 0.5rem;
+    margin: 0.5rem 0;
+    background-color: $blackAlpha50;
+    color: $white;
+    height: 2rem;
+    & > div:hover {
+      cursor: pointer;
+      color: var(--main-color);
+    }
+  }
+
+  &_shop {
+    padding: 1rem;
+    display: flex;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+    gap: 1rem;
+    @include boxShadowOutside($blackAlpha25);
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &_avatar {
+      height: 3rem;
+      width: 3rem;
+      & > img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        @include dropShadow($blackAlpha25);
+      }
+    }
+
+    &_seller {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    &_name {
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+
+    &_owner {
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+  }
+
+  &_descript {
+    height: 20rem;
+    padding: 1.4rem;
+    display: flex;
+    gap: 0.4rem;
+    flex-direction: column;
+    border-radius: 1rem;
+    overflow-y: auto;
+    @include boxShadowOutside($blackAlpha0125);
+
+    & > h3 {
+      font-weight: 500;
+    }
+  }
+
+  &_comment {
+    margin: 1rem 0;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-radius: 1rem;
+    background-color: var(--main-color);
+    @include boxShadowOutside($blackAlpha0125);
+
+    & > div:nth-child(2) {
+      width: 80%;
+    }
+
+    & > div:nth-child(3) {
+      color: $black;
+      font-size: 1.25rem;
+      &:hover {
+        color: $red;
+        cursor: pointer;
+      }
+    }
+
+    &_avatar {
+      height: 3rem;
+      width: 3rem;
+      & > img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        padding: 0.2rem;
+        @include borderThin($black);
+        @include dropShadow($blackAlpha25);
+      }
+    }
+  }
+  &_relative {
+    margin: 1rem;
+    width: 100%;
+    overflow-y: hidden;
+    overflow-x: auto;
+    display: flex;
+    gap: 1rem;
+    & > input {
+      display: none;
+      &:checked + label {
+        background-color: $red;
+        border-radius: 0.2rem;
+      }
+    }
+  }
+}
+
+.comment {
+  &_list {
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 0;
+    border-radius: 0.3rem;
+    @include boxShadowOutside($blackAlpha25);
+    & > div:first-child {
+      padding: 1rem 0;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      border-bottom: 1px solid $red;
+    }
+    & > div:nth-child(2) {
+      padding: 0.5rem 1rem;
+    }
+    & > div:last-child {
+      //       padding: 0 1rem;
+      display: flex;
+      & > div:hover {
+        color: gray;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.user_comment_avatar {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  & > img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+}
+
+.list_item {
+  width: 8rem;
+  height: 8rem;
+  padding: 0.2rem;
+  @include borderThin($black);
+  border-radius: 0.2rem;
+  cursor: pointer;
+  & > img {
+    width: 100%;
+    height: 100%;
+    border-radius: 0.2rem;
+  }
+}
+
+.block_bid {
+  position: sticky;
+  top: 1rem;
+  margin-left: 1rem;
+  height: 15rem;
+  width: 20rem;
+  font-weight: 500;
+  padding: 1rem;
+  border-radius: 0.4rem;
+  z-index: 9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  @include borderThin($black);
+  & > div:first-child {
+    text-align: center;
+    & > div:last-child {
+      font-size: 1.5rem;
+      color: $red;
+    }
+  }
+
+  & > div:nth-child(2) {
+    text-align: center;
+    & > div:last-child {
+      font-size: 1.5rem;
+      color: $red;
+    }
+  }
+
+  & > div:last-child {
+    width: 80%;
+    padding: 1rem 0;
+    border-radius: 0.2rem;
+    color: $white;
+    text-align: center;
+    background-color: $red;
+    &:hover {
+      background-color: $blackAlpha25;
+      cursor: pointer;
+    }
+  }
+}

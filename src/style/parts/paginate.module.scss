@@ -1,0 +1,52 @@
+@import "../global.scss";
+
+.index {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin: 1rem 0;
+  & > div {
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: var(--text);
+
+    @include borderThin(var(--text));
+    &:hover {
+      cursor: pointer;
+      background-color: $red;
+      color: $white;
+    }
+  }
+}
+
+.enter_page {
+  display: flex;
+  align-items: center;
+  color: var(--text);
+  justify-content: center;
+  gap: 1rem;
+  & > input {
+    width: 2rem;
+    border-top: none;
+    padding: 0.2rem 0;
+    text-align: center;
+    &:focus-visible {
+      outline: none;
+    }
+  }
+  & > div {
+    cursor: pointer;
+
+    padding: 0.2rem;
+    border-radius: 0.2rem;
+
+    &:hover {
+      color: $red;
+      background-color: var(--text);
+    }
+  }
+}

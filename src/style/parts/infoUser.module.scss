@@ -1,0 +1,72 @@
+@import "../global.scss";
+
+.box {
+  position: relative;
+  margin-top: 5rem;
+  width: 20%;
+  display: flex;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  @include borderThin(var(--text));
+  &_info {
+    color: var(--text);
+    width: 80%;
+  }
+  &_icon {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text);
+    border-left: 1px solid var(--text);
+    &:hover {
+      background-color: var(--main-color);
+      cursor: pointer;
+      border-radius: 0.5rem;
+    }
+  }
+  &_drop_down {
+    position: absolute;
+    bottom: -100%;
+    left: 50%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    color: var(--text);
+    gap: 0.5rem;
+    transform: translateX(-50%);
+    & > div:last-child {
+      padding: 0.25rem 0.4rem;
+      border-radius: 50%;
+      @include borderThin(var(--text));
+      &:hover {
+        cursor: pointer;
+        background-color: var(--main-color);
+      }
+    }
+  }
+}
+
+.info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  &_user {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    width: 90%;
+    text-align: center;
+    color: var(--text);
+    @include borderThin(var(--text));
+    border-bottom: none;
+    padding: 0.3rem 1rem 0.3rem 1rem;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transform: translateX(-50%);
+  }
+}

@@ -1,0 +1,130 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,700&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: all 0.15s linear;
+}
+
+$red: #a00202;
+$green: #e8ffce;
+$white: #fff;
+$black: #000;
+$blackAlpha50: rgba(0, 0, 0, 0.5);
+$blackAlpha25: rgba(0, 0, 0, 0.25);
+$blackAlpha0125: rgba(0, 0, 0, 0.125);
+$blue: #acfadf;
+
+:root {
+  --text: #{$black};
+  --main-color: #{$green};
+  --secondary-color: #{$blue};
+  --alpha: 0.5;
+}
+
+html {
+  font-family: "Fira Sans Condensed", sans-serif;
+  font-size: 18px;
+}
+
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+.relative {
+  position: relative;
+}
+
+@mixin centerItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin dropShadow($color) {
+  filter: drop-shadow(5px 5px 5px $color);
+}
+
+@mixin borderThin($color) {
+  border: 1px solid $color;
+}
+
+@mixin boxShadowOutside($color) {
+  box-shadow: 5px 5px 15px 1px $color;
+}
+
+@mixin alphaBgColor($color, $alpha) {
+  background-color: rgba(red($color), green($color), blue($color), $alpha);
+}
+
+body.dark {
+  background-color: #16213e;
+}
+
+.flex {
+  display: flex;
+}
+
+.layout_20 {
+  width: 20%;
+  &_center {
+    width: 20%;
+    margin: 0 auto;
+  }
+}
+
+.layout_30 {
+  width: 30%;
+  &_center {
+    width: 30%;
+    margin: 0 auto;
+  }
+}
+
+.layout_70 {
+  width: 70%;
+  &_center {
+    width: 70%;
+    margin: 0 auto;
+  }
+}
+
+.layout_full {
+  width: 100%;
+}
+
+.layout_80 {
+  width: 80%;
+  &_center {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+*.dark {
+  --text: #{$white};
+  --main-color: #{$blue} !important;
+}
+*.main_blue {
+  --main-color: #{$blue} !important;
+}
+
+*.main_green {
+  --main-color: #{$green} !important;
+}
+
+@media (max-width: 1023px) {
+  .layout_20,
+  .layout_30,
+  .layout_70,
+  .layout_80 {
+    display: block;
+    width: 100%;
+  }
+  .flex {
+    flex-direction: column;
+  }
+}
